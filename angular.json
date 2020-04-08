@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "lec02"
+    }
+  },
+  "defaultProject": "lec02",
+  "cli": {
+    "analytics": "fb1d79e6-e8a2-4b16-bece-f0bbb59310d0"
+  }
 }
