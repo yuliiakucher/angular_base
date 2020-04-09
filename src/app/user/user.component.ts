@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit} from '@angular/core';
 import {UserModel} from '../../models/UserModel';
 
 @Component({
@@ -10,6 +10,11 @@ export class UserComponent {
 
   @Input()
   user: UserModel;
-  constructor() { }
 
+
+  constructor() {
+  }
+
+  actionWithUser(user: UserModel) {
+  }
 }
