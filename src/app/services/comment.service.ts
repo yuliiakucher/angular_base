@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {UserModel} from '../../models/UserModel';
 import {Observable} from 'rxjs';
+import {CommentModel} from '../../models/CommentModel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class CommentService {
 
   constructor(private http: HttpClient) {
   }
-  getUsers(): Observable<UserModel[]>{
-    return this.http.get<UserModel[]>('https://jsonplaceholder.typicode.com/users');
+
+  getComments(): Observable<CommentModel>{
+    return this.http.get('https://jsonplaceholder.typicode.com/comments')
   }
 }
