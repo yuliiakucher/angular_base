@@ -8,6 +8,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {HelloComponent} from './hello/hello.component';
 import {AllUsersComponent} from './all-users/all-users.component';
 import {UserResolverService} from './services/user-resolver.service';
+import { PostComponent } from './post/post.component';
+import { AllPostsComponent } from './all-posts/all-posts.component';
 
 
 const routes: Routes = [
@@ -15,7 +17,8 @@ const routes: Routes = [
   {
     path: 'users',
     component: AllUsersComponent,
-    resolve: {allUsers: UserResolverService}
+    resolve: {allUsers: UserResolverService},
+    children: [{path: ':id/posts', component: AllPostsComponent}]
   }
 ];
 
@@ -24,7 +27,9 @@ const routes: Routes = [
     AppComponent,
     UserComponent,
     HelloComponent,
-    AllUsersComponent
+    AllUsersComponent,
+    PostComponent,
+    AllPostsComponent
   ],
   imports: [
     BrowserModule,
