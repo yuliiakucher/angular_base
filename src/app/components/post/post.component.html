@@ -1,4 +1,10 @@
+<hr/>
 <div>
-  {{post.id}}
+  <div>Post #{{post.id}} by user - {{post.userId}}</div>
   {{post.title}}
+  {{post.body}}
+  <button (click)="showComments(post)">show comments</button>
+
 </div>
+<hr/>
+

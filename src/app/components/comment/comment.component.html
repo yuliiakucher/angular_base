@@ -1,5 +1,9 @@
 <div>
   {{comment.id}}
+  {{comment.postId}}
   {{comment.name}}
   {{comment.body}}
+  <button (click)="showPost(comment)">show post</button>
+
 </div>
+<router-outlet></router-outlet>
