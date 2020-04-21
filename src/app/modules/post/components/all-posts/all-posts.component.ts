@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {PostService} from '../services/post.service';
+import {PostService} from '../../services/post.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PostModel} from '../../models/PostModel';
+import {PostModel} from '../../../../../models/PostModel';
 
 @Component({
   selector: 'app-all-posts',
@@ -17,11 +17,19 @@ export class AllPostsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    this.activatedRoute.params
-      .subscribe(params =>
-        this.postService
-          .getPostsByUserId(params.id)
-          .subscribe(value => this.posts = value));
+    if (this.activatedRoute.snapshot.params.id) {
+      this.activatedRoute.params
+        .subscribe(params =>
+          this.postService
+            .getPostsByUserId(params.id)
+            .subscribe(value => this.posts = value));
+    }
+
+
+    this.activatedRoute.data.subscribe(value => {
+      this.posts = value.AllPosts;
+    });
+
     // this.activatedRoute.queryParams
     //   .subscribe(queryParams =>
     //     this.postService
