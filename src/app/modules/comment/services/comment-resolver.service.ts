@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Resolve} from '@angular/router';
-import {CommentModel} from '../../models/CommentModel';
+import {CommentModel} from '../../../../models/CommentModel';
 import {CommentService} from './comment.service';
 import {Observable} from 'rxjs';
 

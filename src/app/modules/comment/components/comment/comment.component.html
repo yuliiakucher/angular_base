@@ -1,0 +1,10 @@
+<div>
+  <h2>Comment #{{comment?.id}} from {{comment?.postId}}</h2>
+  <div>{{comment?.name}}</div>
+  <div>{{comment?.body}}</div>
+  <button (click)="showPost(comment)">show post</button>
+</div>
+<div>
+  <div>Post #{{post?.id}} - {{post?.body}}</div>
+</div>
+
