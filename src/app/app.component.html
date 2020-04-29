@@ -1,45 +1,31 @@
+<h1>Create your task!</h1>
 
-<!--<div>-->
-<!--  {{state.login}}-->
-<!--  <hr>-->
-<!--  {{state.pass}}-->
-<!--</div>-->
-
-<!--<input #xxx >-->
-<!--<button (click)="changeState(xxx)">save</button>-->
-<br>
-<!--<input [(ngModel)]=state.login >-->
-<!--<input [(ngModel)]=state.pass >-->
-
-<!--<div>-->
-<!--  {{loginForm.login}}-->
-<!--  <hr>-->
-<!--  {{loginForm.password}}-->
-<!--</div>-->
-
-<!--<form>-->
-<!--  <div>-->
-<!--    <label>Login</label>-->
-<!--    <input type="text" [(ngModel)]="loginForm.login" name="login">-->
-<!--  </div>-->
-<!--  <div>-->
-<!--    <label>Password</label>-->
-<!--    <input type="password" [(ngModel)]="loginForm.password" name="password">-->
-<!--  </div>-->
-<!--</form>-->
-
-
-
-<form [formGroup]="forma">
-  <div>
-    <input formControlName="login" >
-    <div *ngIf="forma.controls['login'].invalid">login is required!</div>
+<form [formGroup]="toDo" class="form">
+  <div class="cell">
+    <label>#</label>
+    <input formControlName="id" type="number">
+    <div *ngIf="toDo.controls.id.invalid">please fill!</div>
   </div>
-  <div>
-<!--    <input [formControl]="password" >-->
-    <input formControlName="password">
-    <div *ngIf="forma.controls.password.invalid">password is required!</div>
+  <div class="cell">
+    <label>Title:</label>
+    <input formControlName="title">
+    <div *ngIf="toDo.controls.title.invalid">please fill!</div>
   </div>
-
-<!--  <button (click)="checkState(forma)" [disabled]="forma.invalid">checkState!</button>-->
+  <div class="cell">
+    <label>Text:</label>
+    <input formControlName="body">
+    <div *ngIf="toDo.controls.body.invalid">please fill!</div>
+  </div>
+  <div class="cell">
+    <label>Type:</label>
+    <select formControlName="type">
+      <option value="high">high</option>
+      <option value="medium">medium</option>
+      <option value="low">low</option>
+    </select>
+    <div *ngIf="toDo.controls.type.invalid">please fill!</div>
+  </div>
+  <button (click)="createTask(toDo)" [disabled]='toDo.invalid'>create!</button>
 </form>
+<hr>
+<app-todo *ngFor="let d of data" [todo]="d"></app-todo>

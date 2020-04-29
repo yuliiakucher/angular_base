@@ -1,50 +1,33 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Todo} from '../models/Todo';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styles: []
+  styleUrls: ['app.component.css']
 })
 export class AppComponent {
 
-  // state: { login: string, pass: string } = {
-  //   login: 'login',
-  //   pass: 'password'
-  // };
-
-
-  // loginForm: { login: string, password: string } = {
-  //   login: 'def login',
-  //   password: 'def pass'
-  // };
-
-  forma: FormGroup;
-
-  // password: FormControl = new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z]{6,}')] );
-  // checkState(forma: FormGroup) {
-  //   console.log(forma);
-  // }
-  // constructor() {
-  //   this.forma = new FormGroup({
-  //     login: new FormControl('', [Validators.required, Validators.maxLength(10)]),
-  //     password: this.password
-  //   });
-  // }
+  toDo: FormGroup;
+  data: Todo[] = [];
 
   constructor(private formBuilder: FormBuilder) {
-    this.forma = this.formBuilder.group({
-      login: ['', [Validators.required, Validators.pattern ('[a-z]{6,}')]],
-      password: '1111111'
+    this.toDo = this.formBuilder.group({
+      id: ['', Validators.required],
+      title: ['', [Validators.required, Validators.pattern('')]],
+      body: ['write your task here', [Validators.required, Validators.pattern('')]],
+      type: ['', [Validators.required, Validators.pattern('')]]
+
     })
   }
 
 
-  // changeState(xxx: HTMLInputElement) {
-  //   console.log(xxx.value);
-  //   this.state = xxx.value;
-  // }
-
-
+  createTask(toDo: FormGroup) {
+    console.log(toDo.value);
+    this.data.push(toDo.value);
+    console.log(this.data);
+    localStorage.setItem(this.toDo.value, this.toDo.value.id);
+  }
 }
