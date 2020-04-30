@@ -1,32 +1,32 @@
-import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {FirstChildComponent} from './first-child/first-child.component';
 
-import {UserModel} from '../models/UserModel';
-import {UserService} from './services/user.service';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h1>hello {{msg}}!</h1>
-    <app-user *ngFor="let u of users" [user]="u"></app-user>
-  `,
+  templateUrl: 'app.component.html',
   styles: [`h1 {
     background: pink
   }`]
 })
-export class AppComponent {
-  msg = 'users';
-  users: UserModel[];
+export class AppComponent implements AfterViewInit {
 
-  constructor(private userService: UserService) {
-    this.greeting();
-    // this.msg = prompt();
-    this.userService.getUsers().subscribe(value =>
-    this.users = value);
+  @ViewChild('target', {static: false})
+  target;
 
+  @ViewChild(FirstChildComponent, {static: false})
+  firstChild: FirstChildComponent;
+
+
+  constructor() {
+    console.log(this.target);
   }
 
-  greeting() {
-    console.log('hewoo');
+  ngAfterViewInit(): void {
+    console.log(this.target);
+    console.log(this.target.nativeElement.innerText);
+    this.firstChild.hello();
   }
+
+
 }
