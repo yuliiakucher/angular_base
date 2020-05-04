@@ -2,31 +2,38 @@ import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {UserModel} from '../models/UserModel';
-import {UserService} from './services/user.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DataService} from './services/data.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h1>hello {{msg}}!</h1>
-    <app-user *ngFor="let u of users" [user]="u"></app-user>
-  `,
-  styles: [`h1 {
-    background: pink
-  }`]
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  msg = 'users';
-  users: UserModel[];
 
-  constructor(private userService: UserService) {
-    this.greeting();
-    // this.msg = prompt();
-    this.userService.getUsers().subscribe(value =>
-    this.users = value);
+  getUser: FormGroup;
 
+
+
+
+  constructor(private formBuilder: FormBuilder,
+              private dataService: DataService,
+              private router: Router) {
+    this.getUser = this.formBuilder.group({
+      id: ['', Validators.required]
+      }
+    );
   }
 
-  greeting() {
-    console.log('hewoo');
+
+  sendId() {
+    this.dataService.setState(this.getUser.value);
+    console.log(this.getUser.value);
+    this.router.navigate(
+      ['user']
+    );
   }
 }
