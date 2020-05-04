@@ -1,4 +1,6 @@
 <div (click)="done()" [ngClass]="{done: toggleClass}">
   {{todo.id}}
   {{todo.title}}
+
 </div>
+<button (click)="favourite(todo)">add to favourite</button>

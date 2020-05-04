@@ -22,4 +22,18 @@ export class TodoComponent implements OnInit {
   done() {
     this.toggleClass = !this.toggleClass;
   }
+
+
+  favourite(todo: Todo) {
+    if (!localStorage.getItem('favourite')){
+      const arr = [];
+      arr.push(todo);
+      localStorage.setItem('favourite', JSON.stringify(arr));
+    } else {
+      let arrJSON = localStorage.getItem('favourite');
+      const arr = JSON.parse(arrJSON);
+      arr.push(todo);
+      localStorage.setItem('favourite', JSON.stringify(arr));
+    }
+  }
 }

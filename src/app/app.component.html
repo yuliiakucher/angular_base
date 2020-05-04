@@ -28,4 +28,10 @@
   <button (click)="createTask(toDo)" [disabled]='toDo.invalid'>create!</button>
 </form>
 <hr>
+<h3>favourites notes</h3>
+<button (click)="clear()">clear LC</button>
+<div *ngFor="let favs of favourites">
+  {{favs | json}}
+</div>
+<hr>
 <app-todo *ngFor="let d of data" [todo]="d"></app-todo>
