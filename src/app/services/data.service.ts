@@ -6,27 +6,10 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class DataService {
 
-  state = new BehaviorSubject('default');
+  state = new BehaviorSubject(null);
 
-  err = new BehaviorSubject('default');
 
   constructor() {
-  }
-
-  getState() {
-    return this.state;
-  }
-
-  setState(state) {
-    this.state.next(state);
-  }
-
-  getErr() {
-    return this.err;
-  }
-
-  setErr(err) {
-    this.err.next(err);
   }
 
 }

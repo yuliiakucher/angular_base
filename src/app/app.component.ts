@@ -14,26 +14,26 @@ import {Router} from '@angular/router';
 })
 export class AppComponent {
 
-  getUser: FormGroup;
-
-
-
-
-  constructor(private formBuilder: FormBuilder,
-              private dataService: DataService,
-              private router: Router) {
-    this.getUser = this.formBuilder.group({
-      id: ['', Validators.required]
-      }
-    );
-  }
-
-
-  sendId() {
-    this.dataService.setState(this.getUser.value);
-    console.log(this.getUser.value);
-    this.router.navigate(
-      ['user']
-    );
-  }
+  // getUser: FormGroup;
+  //
+  //
+  //
+  //
+  // constructor(private formBuilder: FormBuilder,
+  //             private dataService: DataService,
+  //             private router: Router) {
+  //   this.getUser = this.formBuilder.group({
+  //     id: ['', Validators.required]
+  //     }
+  //   );
+  // }
+  //
+  //
+  // sendId() {
+  //   // this.dataService.setState(this.getUser.value);
+  //   console.log(this.getUser.value.id);
+  //   this.router.navigate(
+  //     ['', this.getUser.value.id]
+  //   );
+  // }
 }

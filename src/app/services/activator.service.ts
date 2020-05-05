@@ -11,21 +11,22 @@ import {UserService} from './user.service';
 })
 export class ActivatorService implements CanActivate {
 
-  temporate: boolean;
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private userService: UserService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    this.dataService.getErr().subscribe(value => {
-      if (value === '404') {
-        this.temporate = false;
-      } else {
-        this.temporate = true;
-      }
-    });
-    console.log(this.temporate);
-    return this.temporate;
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+    console.log(+route.params.id);
+
+
+    const ourUser = await this.userService.getUserById(+route.params.id).toPromise();
+    console.log(ourUser);
+    console.log(Object.keys(ourUser));
+    if (Object.keys(ourUser).length){
+      this.dataService.state.next(ourUser);
+      return Promise.resolve(true);
+    }
+    return Promise.resolve(false);
   }
 
 

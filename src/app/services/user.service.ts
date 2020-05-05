@@ -10,11 +10,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {
   }
-  getUsers(): Observable<UserModel[]>{
-    return this.http.get<UserModel[]>('https://jsonplaceholder.typicode.com/users');
-  }
 
-  getUser(id:number) {
+  getUserById(id) {
     return this.http.get<UserModel[]>(`https://jsonplaceholder.typicode.com/users/${id}`);
   }
 }

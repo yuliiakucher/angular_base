@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserModel} from '../../models/UserModel';
+import {UserService} from '../services/user.service';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-user',
@@ -8,8 +10,9 @@ import {UserModel} from '../../models/UserModel';
 })
 export class UserComponent {
 
-  @Input()
   user: UserModel;
-  constructor() { }
+  constructor(private dataService: DataService) {
+    dataService.state.subscribe(value => this.user = value);
+  }
 
 }

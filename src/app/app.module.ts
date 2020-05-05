@@ -7,15 +7,18 @@ import { UserComponent } from './user/user.component';
 import {RouterModule, Routes} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ActivatorService} from './services/activator.service';
+import { StartComponent } from './start/start.component';
 
 const routes: Routes = [
-  {path: 'user', component: UserComponent, canActivate: [ActivatorService]}
+  {path: 'user/:id', component: UserComponent, canActivate: [ActivatorService]},
+  {path: 'start', component: StartComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
